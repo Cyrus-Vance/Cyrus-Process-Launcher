@@ -7,10 +7,10 @@ Cyrus Process Launcher是由Cyrus Vance开发的用于Windows系统的易用型�
 
 ## 待改进的部分（TODO）
 
-###功能方面
+### 功能方面
 + 准备加入程序退出后的进程保存机制，用于显示之前隐藏过的进程。
 
-###程序方面
+### 程序方面
 + 大量数据变量数组诸如*pathData, cmdLineData, enableData, hideData*可用List< T >而不是多个数组（T为自定义类型），在容量方面也更灵活
 + foreach遍历可以取代大量传统的for遍历
 + 尚不清楚使用Win32API和System.Diagnostics.Process.MainWindowHandle获取进程主窗口句柄的优缺点

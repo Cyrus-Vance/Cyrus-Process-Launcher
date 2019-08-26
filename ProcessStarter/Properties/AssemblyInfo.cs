@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Cyrus's Process Launcher")]
-[assembly: AssemblyDescription("CPL进程自动启动管理系统可以将您需要启动的一些程序如服务端或其他需要后台运行的监视软件轻松地设定为自动运行，让您释放自己的双手和大脑，轻松面对复杂的运维和日常工作.")]
+[assembly: AssemblyDescription("CPL进程自动启动管理系统可以将您需要启动的一些程序如服务端或其他需要后台运行的监视软件轻松地设定为自动运行，让您释放自己的双手和大脑，轻松面对复杂的运维和日常工作. 项目开源地址：https://github.com/Cyrus-Vance/Cyrus-Process-Launcher")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SuperNoob")]
 [assembly: AssemblyProduct("Cyrus's进程自动启动管理系统")]

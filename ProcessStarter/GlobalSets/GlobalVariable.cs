@@ -15,8 +15,8 @@ namespace ProcessStarter.GlobalSets
         public static int HideCountdown = 2;
         public static int Default_ShutdownCountdown = 5;
         public static int ShutdownCountdown = 5;
-        public static bool EnableHideWindow = true;
-        public static bool EnableAutoExit = true;
+        public static bool EnableHideWindow = false;
+        public static bool EnableAutoExit = false;
         public static bool EnableAutoUpdater = false;
         public static bool EnableDirectLaunch = true;
         public static bool EnableMinToNotify = false;

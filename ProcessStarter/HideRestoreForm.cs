@@ -145,11 +145,13 @@ namespace ProcessStarter
             {
                 ManualLabel.Enabled = true;
                 ManualPIDTextBox.Enabled = true;
+                SelectProcessButton.Enabled = true;
             }
             else
             {
                 ManualLabel.Enabled = false;
                 ManualPIDTextBox.Enabled = false;
+                SelectProcessButton.Enabled = false;
             }
         }
 
@@ -173,25 +175,53 @@ namespace ProcessStarter
                     //进入手动操作模式
                     if (!ManualPIDTextBox.Text.Equals(""))
                     {
-                        int userInputNumber = Convert.ToInt32(ManualPIDTextBox.Text);
-                        //如果是已记录的隐藏程序
-                        if (GlobalVariable.Started_PID.Contains(userInputNumber))
+                        if (ManualPIDTextBox.Text.Contains(','))
                         {
-                            //在ListView中对相应的项设置“显示”标签
-                            foreach (ListViewItem item in ProcessView.Items)
+                            string[] listed_processes = ManualPIDTextBox.Text.Split(',');
+                            foreach (string str in listed_processes)
                             {
-                                if (item.Text.Equals(ManualPIDTextBox.Text)&&item.SubItems[3].Text.Equals("隐藏"))
+                                //如果是已记录的隐藏程序
+                                if (GlobalVariable.Started_PID.Contains(Convert.ToInt32(str)))
                                 {
-                                    ShowProcessWindow(userInputNumber);
-                                    item.SubItems[3].Text = "正常";
+                                    //在ListView中对相应的项设置“显示”标签
+                                    foreach (ListViewItem item in ProcessView.Items)
+                                    {
+                                        if (item.Text.Equals(ManualPIDTextBox.Text) && item.SubItems[3].Text.Equals("隐藏"))
+                                        {
+                                            ShowProcessWindow(Convert.ToInt32(str));
+                                            item.SubItems[3].Text = "正常";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    //未记录则强制发送指令
+                                    ShowProcessWindow(Convert.ToInt32(str));
                                 }
                             }
                         }
                         else
                         {
-                            //未记录则强制发送指令
-                            ShowProcessWindow(userInputNumber);
-                        }
+                            int userInputNumber = Convert.ToInt32(ManualPIDTextBox.Text);
+                            //如果是已记录的隐藏程序
+                            if (GlobalVariable.Started_PID.Contains(userInputNumber))
+                            {
+                                //在ListView中对相应的项设置“显示”标签
+                                foreach (ListViewItem item in ProcessView.Items)
+                                {
+                                    if (item.Text.Equals(ManualPIDTextBox.Text) && item.SubItems[3].Text.Equals("隐藏"))
+                                    {
+                                        ShowProcessWindow(userInputNumber);
+                                        item.SubItems[3].Text = "正常";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //未记录则强制发送指令
+                                ShowProcessWindow(userInputNumber);
+                            }
+                        }                        
                     }
                     else
                     {
@@ -228,25 +258,53 @@ namespace ProcessStarter
                     //进入手动操作模式
                     if (!ManualPIDTextBox.Text.Equals(""))
                     {
-                        int userInputNumber = Convert.ToInt32(ManualPIDTextBox.Text);
-                        //如果是已记录的启动程序
-                        if (GlobalVariable.Started_PID.Contains(userInputNumber))
+                        if (ManualPIDTextBox.Text.Contains(','))
                         {
-                            //在ListView中对相应的项设置“隐藏”标签
-                            foreach (ListViewItem item in ProcessView.Items)
+                            string[] listed_processes = ManualPIDTextBox.Text.Split(',');
+                            foreach(string str in listed_processes)
                             {
-                                if (item.Text.Equals(ManualPIDTextBox.Text) && item.SubItems[3].Text.Equals("正常"))
+                                //如果是已记录的启动程序
+                                if (GlobalVariable.Started_PID.Contains(Convert.ToInt32(str)))
                                 {
-                                    HideProcessWindow(userInputNumber);
-                                    item.SubItems[3].Text = "隐藏";
+                                    //在ListView中对相应的项设置“隐藏”标签
+                                    foreach (ListViewItem item in ProcessView.Items)
+                                    {
+                                        if (item.Text.Equals(ManualPIDTextBox.Text) && item.SubItems[3].Text.Equals("正常"))
+                                        {
+                                            HideProcessWindow(Convert.ToInt32(str));
+                                            item.SubItems[3].Text = "隐藏";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    //未记录则强制发送指令
+                                    HideProcessWindow(Convert.ToInt32(str));
                                 }
                             }
                         }
                         else
                         {
-                            //未记录则强制发送指令
-                            HideProcessWindow(userInputNumber);
-                        }
+                            int userInputNumber = Convert.ToInt32(ManualPIDTextBox.Text);
+                            //如果是已记录的启动程序
+                            if (GlobalVariable.Started_PID.Contains(userInputNumber))
+                            {
+                                //在ListView中对相应的项设置“隐藏”标签
+                                foreach (ListViewItem item in ProcessView.Items)
+                                {
+                                    if (item.Text.Equals(ManualPIDTextBox.Text) && item.SubItems[3].Text.Equals("正常"))
+                                    {
+                                        HideProcessWindow(userInputNumber);
+                                        item.SubItems[3].Text = "隐藏";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //未记录则强制发送指令
+                                HideProcessWindow(userInputNumber);
+                            }
+                        }                  
                     }
                     else
                     {
@@ -265,7 +323,7 @@ namespace ProcessStarter
 
         private void ManualPIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar != 8 && !Char.IsDigit(e.KeyChar))//如果不是输入数字就不让输入
+            if (e.KeyChar != 8 && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')//如果不是输入数字、退格、逗号就不让输入
             {
                 e.Handled = true;
             }
@@ -283,5 +341,10 @@ namespace ProcessStarter
             LoadAllProgramToList();
         }
 
+        private void SelectProcessButton_Click(object sender, EventArgs e)
+        {
+            ProcessSelectWindow processSlctWindow = new ProcessSelectWindow(this);
+            processSlctWindow.ShowDialog();
+        }
     }
 }

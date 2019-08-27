@@ -97,7 +97,7 @@ namespace ServerStarter
 
         private void ExecuteStartProcess()
         {
-            if (!GlobalVariable.Authorized) return;
+            if (!GlobalVariable.Authorized) return; //授权验证
             bool StartFailedFlag = false;
             if (!File.Exists(GlobalVariable.PathDBPath))
             {
@@ -233,7 +233,7 @@ namespace ServerStarter
 
         void HideWindow_Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (!GlobalVariable.Authorized) return;
+            if (!GlobalVariable.Authorized) return; //授权验证
             Invoke((EventHandler)delegate
             {
                 Addlog("开始隐藏所有窗口……", Color.Brown, true);
@@ -302,7 +302,7 @@ namespace ServerStarter
 
         void Shutdown_Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (!GlobalVariable.Authorized) return;
+            if (!GlobalVariable.Authorized) return; //授权验证
             if (GlobalVariable.ShutdownCountdown > 0)
             {
                 GlobalVariable.ShutdownCountdown -= 1;

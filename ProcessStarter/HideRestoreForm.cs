@@ -157,6 +157,7 @@ namespace ProcessStarter
 
         private void RestoreProcessButton_Click(object sender, EventArgs e)
         {
+            if (!GlobalVariable.Authorized) return; //授权验证
             if (ProcessView.SelectedItems.Count > 0 || ManualPIDCheckBox.Checked)
             {
                 if (!ManualPIDCheckBox.Checked)
@@ -240,6 +241,7 @@ namespace ProcessStarter
 
         private void HideProcessButton_Click(object sender, EventArgs e)
         {
+            if (!GlobalVariable.Authorized) return; //授权验证
             if (ProcessView.SelectedItems.Count > 0 || ManualPIDCheckBox.Checked)
             {
                 if (!ManualPIDCheckBox.Checked)
@@ -343,6 +345,7 @@ namespace ProcessStarter
 
         private void SelectProcessButton_Click(object sender, EventArgs e)
         {
+            if (!GlobalVariable.Authorized) return; //授权验证
             ProcessSelectWindow processSlctWindow = new ProcessSelectWindow(this);
             processSlctWindow.ShowDialog();
         }

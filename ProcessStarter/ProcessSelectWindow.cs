@@ -176,7 +176,7 @@ namespace ProcessStarter
                 }
                 processSelectWindow.Invoke((EventHandler)delegate
                 {
-                    statusLabel.Text = $@"进程列表加载完毕";
+                    statusLabel.Text = $@"进程列表加载完毕,共加载了{progress}个进程!";
                 });
             }
             catch

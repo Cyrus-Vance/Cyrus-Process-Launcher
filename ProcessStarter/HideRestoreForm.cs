@@ -137,7 +137,7 @@ namespace ProcessStarter
             }
         }
 
-        private void HideProcessRestoreButton_Click(object sender, EventArgs e)
+        private void RestoreProcessButton_Click(object sender, EventArgs e)
         {
             if(ProcessView.SelectedItems.Count>0)
             {
@@ -152,6 +152,47 @@ namespace ProcessStarter
                             ShowWindow(intptr, GlobalVariable.SW_SHOW);
                             GlobalVariable.Hid_PID.Remove(Convert.ToInt32(item.Text));
                             item.SubItems[3].Text = "正常";
+                        }
+                    }
+                }
+                else
+                {
+                    //进入手动操作模式
+                    if (!ManualPIDTextBox.Text.Equals(""))
+                    {
+                        int userInputNumber = Convert.ToInt32(ManualPIDTextBox.Text);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("请输入进程ID！", "未输入PID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                ProcessView.BeginUpdate();
+                LoadAllProgramToList();
+                ProcessView.EndUpdate();
+            }
+            else
+            {
+                MessageBox.Show("请选择需要操作的进程！", "未选中进程", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void HideProcessButton_Click(object sender, EventArgs e)
+        {
+            if (ProcessView.SelectedItems.Count > 0)
+            {
+                if (!ManualPIDCheckBox.Checked)
+                {
+                    foreach (ListViewItem item in ProcessView.SelectedItems)
+                    {
+                        if (item.SubItems[3].Text.Equals("正常"))
+                        {
+                            IntPtr intptr;
+                            intptr = User32API.GetWindowHandle(Convert.ToInt32(item.Text));
+                            ShowWindow(intptr, GlobalVariable.SW_HIDE);
+                            GlobalVariable.Hid_PID.Add(Convert.ToInt32(item.Text));
+                            item.SubItems[3].Text = "隐藏";
                         }
                     }
                 }
@@ -197,5 +238,6 @@ namespace ProcessStarter
         {
             LoadAllProgramToList();
         }
+
     }
 }

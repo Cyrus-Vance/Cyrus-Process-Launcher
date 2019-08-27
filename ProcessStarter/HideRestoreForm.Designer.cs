@@ -40,7 +40,7 @@
             this.ManualPIDTextBox = new System.Windows.Forms.TextBox();
             this.ManualLabel = new System.Windows.Forms.Label();
             this.ManualPIDCheckBox = new System.Windows.Forms.CheckBox();
-            this.HideProcessRestoreButton = new System.Windows.Forms.Button();
+            this.RestoreProcessButton = new System.Windows.Forms.Button();
             this.RefreshListTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -100,7 +100,7 @@
             this.groupBox1.Controls.Add(this.ManualPIDTextBox);
             this.groupBox1.Controls.Add(this.ManualLabel);
             this.groupBox1.Controls.Add(this.ManualPIDCheckBox);
-            this.groupBox1.Controls.Add(this.HideProcessRestoreButton);
+            this.groupBox1.Controls.Add(this.RestoreProcessButton);
             this.groupBox1.Location = new System.Drawing.Point(604, 225);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -112,14 +112,14 @@
             // 
             // HideProcessButton
             // 
-            this.HideProcessButton.Enabled = false;
             this.HideProcessButton.Location = new System.Drawing.Point(19, 94);
             this.HideProcessButton.Margin = new System.Windows.Forms.Padding(4);
             this.HideProcessButton.Name = "HideProcessButton";
             this.HideProcessButton.Size = new System.Drawing.Size(259, 35);
             this.HideProcessButton.TabIndex = 11;
-            this.HideProcessButton.Text = "隐藏进程窗口（下版本开放）";
+            this.HideProcessButton.Text = "隐藏进程窗口";
             this.HideProcessButton.UseVisualStyleBackColor = true;
+            this.HideProcessButton.Click += new System.EventHandler(this.HideProcessButton_Click);
             // 
             // ManualPIDTextBox
             // 
@@ -155,16 +155,16 @@
             this.ManualPIDCheckBox.UseVisualStyleBackColor = true;
             this.ManualPIDCheckBox.CheckedChanged += new System.EventHandler(this.ManualPIDCheckBox_CheckedChanged);
             // 
-            // HideProcessRestoreButton
+            // RestoreProcessButton
             // 
-            this.HideProcessRestoreButton.Location = new System.Drawing.Point(19, 136);
-            this.HideProcessRestoreButton.Margin = new System.Windows.Forms.Padding(4);
-            this.HideProcessRestoreButton.Name = "HideProcessRestoreButton";
-            this.HideProcessRestoreButton.Size = new System.Drawing.Size(259, 35);
-            this.HideProcessRestoreButton.TabIndex = 7;
-            this.HideProcessRestoreButton.Text = "还原进程窗口";
-            this.HideProcessRestoreButton.UseVisualStyleBackColor = true;
-            this.HideProcessRestoreButton.Click += new System.EventHandler(this.HideProcessRestoreButton_Click);
+            this.RestoreProcessButton.Location = new System.Drawing.Point(19, 136);
+            this.RestoreProcessButton.Margin = new System.Windows.Forms.Padding(4);
+            this.RestoreProcessButton.Name = "RestoreProcessButton";
+            this.RestoreProcessButton.Size = new System.Drawing.Size(259, 35);
+            this.RestoreProcessButton.TabIndex = 7;
+            this.RestoreProcessButton.Text = "还原进程窗口";
+            this.RestoreProcessButton.UseVisualStyleBackColor = true;
+            this.RestoreProcessButton.Click += new System.EventHandler(this.RestoreProcessButton_Click);
             // 
             // RefreshListTimer
             // 
@@ -211,7 +211,7 @@
         private System.Windows.Forms.TextBox ManualPIDTextBox;
         private System.Windows.Forms.Label ManualLabel;
         private System.Windows.Forms.CheckBox ManualPIDCheckBox;
-        private System.Windows.Forms.Button HideProcessRestoreButton;
+        private System.Windows.Forms.Button RestoreProcessButton;
         private System.Windows.Forms.Timer RefreshListTimer;
     }
 }

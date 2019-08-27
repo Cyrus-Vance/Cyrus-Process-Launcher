@@ -42,6 +42,7 @@
             this.ManualPIDCheckBox = new System.Windows.Forms.CheckBox();
             this.RestoreProcessButton = new System.Windows.Forms.Button();
             this.RefreshListTimer = new System.Windows.Forms.Timer(this.components);
+            this.SelectProcessButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.SelectProcessButton);
             this.groupBox1.Controls.Add(this.HideProcessButton);
             this.groupBox1.Controls.Add(this.ManualPIDTextBox);
             this.groupBox1.Controls.Add(this.ManualLabel);
@@ -127,7 +129,7 @@
             this.ManualPIDTextBox.Location = new System.Drawing.Point(77, 56);
             this.ManualPIDTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ManualPIDTextBox.Name = "ManualPIDTextBox";
-            this.ManualPIDTextBox.Size = new System.Drawing.Size(197, 25);
+            this.ManualPIDTextBox.Size = new System.Drawing.Size(142, 25);
             this.ManualPIDTextBox.TabIndex = 9;
             this.ManualPIDTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ManualPIDTextBox_KeyPress);
             // 
@@ -145,13 +147,12 @@
             // ManualPIDCheckBox
             // 
             this.ManualPIDCheckBox.AutoSize = true;
-            this.ManualPIDCheckBox.Enabled = false;
             this.ManualPIDCheckBox.Location = new System.Drawing.Point(19, 29);
             this.ManualPIDCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.ManualPIDCheckBox.Name = "ManualPIDCheckBox";
-            this.ManualPIDCheckBox.Size = new System.Drawing.Size(194, 19);
+            this.ManualPIDCheckBox.Size = new System.Drawing.Size(89, 19);
             this.ManualPIDCheckBox.TabIndex = 8;
-            this.ManualPIDCheckBox.Text = "手动操作（下版本开放）";
+            this.ManualPIDCheckBox.Text = "手动操作";
             this.ManualPIDCheckBox.UseVisualStyleBackColor = true;
             this.ManualPIDCheckBox.CheckedChanged += new System.EventHandler(this.ManualPIDCheckBox_CheckedChanged);
             // 
@@ -170,6 +171,16 @@
             // 
             this.RefreshListTimer.Interval = 30000;
             this.RefreshListTimer.Tick += new System.EventHandler(this.RefreshListTimer_Tick);
+            // 
+            // SelectProcessButton
+            // 
+            this.SelectProcessButton.Enabled = false;
+            this.SelectProcessButton.Location = new System.Drawing.Point(227, 54);
+            this.SelectProcessButton.Name = "SelectProcessButton";
+            this.SelectProcessButton.Size = new System.Drawing.Size(51, 28);
+            this.SelectProcessButton.TabIndex = 12;
+            this.SelectProcessButton.Text = "选择";
+            this.SelectProcessButton.UseVisualStyleBackColor = true;
             // 
             // HideRestoreForm
             // 
@@ -213,5 +224,6 @@
         private System.Windows.Forms.CheckBox ManualPIDCheckBox;
         private System.Windows.Forms.Button RestoreProcessButton;
         private System.Windows.Forms.Timer RefreshListTimer;
+        private System.Windows.Forms.Button SelectProcessButton;
     }
 }

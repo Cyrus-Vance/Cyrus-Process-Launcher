@@ -172,8 +172,18 @@ namespace ServerStarter
             }
             else
             {
-                Addlog("所有程序均已启动完成!", Color.Green, true);
-                StartButton.Enabled = true;
+                if (GlobalVariable.EnableAutoExit)
+                {
+                    GlobalVariable.ShutdownCountdown = GlobalVariable.Default_ShutdownCountdown;
+                    UpdateCountDown();
+                    Addlog("所有程序均已启动完成，将在" + GlobalVariable.Default_ShutdownCountdown + "秒后退出软件!", Color.Green, true);
+                    Shutdown_Timer.Enabled = true;
+                }
+                else
+                {
+                    Addlog("所有程序均已启动完成,无需执行其他操作!", Color.Green, true);
+                    StartButton.Enabled = true;
+                }
             }
             //}
         }
@@ -284,7 +294,7 @@ namespace ServerStarter
             {
                 Invoke((EventHandler)delegate
                 {
-                    Addlog("全部窗口隐藏完成!", Color.Brown, true);
+                    Addlog("全部窗口隐藏完成,无需执行其他操作!", Color.Brown, true);
                     StartButton.Enabled = true;
                 });
             }

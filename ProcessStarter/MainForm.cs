@@ -16,6 +16,7 @@ using ProcessStarter.GlobalSets;
 using System.Reflection;
 using ProcessStarter.Module;
 using System.Xml;
+using System.Security.Principal;
 
 namespace ServerStarter
 {
@@ -79,6 +80,7 @@ namespace ServerStarter
             }
 
 
+            Debug.WriteLine("是否已启用管理员权限：" + Convert.ToString(IsAdministrator()));
             Text = $@"C.P.L. 进程自动启动管理系统";
             VersionPopupMenuItem.Text = string.Format("当前版本：{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
             Addlog(string.Format("Cyrus's Process Launcher启动完毕！当前版本：{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString()), Color.Blue);
@@ -337,6 +339,14 @@ namespace ServerStarter
             cmdLineData[OperateNumber - 1] = CmdLineData;
             enableData[OperateNumber - 1] = EnableData;
             hideData[OperateNumber - 1] = HideData;
+        }
+
+
+        public static bool IsAdministrator()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
         private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)

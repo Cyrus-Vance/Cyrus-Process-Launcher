@@ -77,14 +77,14 @@ namespace ProcessStarter
 
                 if (AutorunBox.Checked)
                 {
-                    RegistryKey RKey = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
-                    RKey.SetValue("CyrusProcessStarter", Application.ExecutablePath, RegistryValueKind.String);
+                    RegistryKey RKey = Registry.LocalMachine.CreateSubKey(GlobalString.bootRegPath);
+                    RKey.SetValue(GlobalString.bootKeyName, Application.ExecutablePath, RegistryValueKind.String);
                     _MainForm.Addlog("已向系统写入开机自启项！", Color.Brown);
                 }
                 else
                 {
-                    RegistryKey RKey = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
-                    RKey.DeleteValue("CyrusProcessStarter", false);
+                    RegistryKey RKey = Registry.LocalMachine.CreateSubKey(GlobalString.bootRegPath);
+                    RKey.DeleteValue(GlobalString.bootKeyName, false);
                     _MainForm.Addlog("已向系统删除开机自启项！", Color.Brown);
                 }
 
